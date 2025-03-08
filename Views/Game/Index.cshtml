@@ -1,0 +1,60 @@
+﻿@model TicTacToe.Models.GameModel
+
+@{
+    ViewData["Title"] = "Tic-Tac-Toe";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="game-container">
+        <h1>@Model.Message</h1>
+
+        <div class="scoreboard">
+            <p>Player X Wins: @Model.PlayerXWins</p>
+            <p>Player O Wins: @Model.PlayerOWins</p>
+            <p>Draws: @Model.Draws</p>
+        </div>
+
+        <form method="post" asp-action="MakeMove" class="@(Model.WinningCells.Count > 0 ? "game-over" : "")">
+            <div class="game-board">
+                @for (int i = 0; i < 3; i++)
+                {
+                    @for (int j = 0; j < 3; j++)
+                    {
+                        bool isWinningCell = Model.WinningCells.Any(c => c.Item1 == i && c.Item2 == j);
+                        if (Model.Board[i, j] == ' ')
+                        {
+                            <button type="submit" name="row" value="@i" formaction="/Game/MakeMove?row=@i&col=@j">
+                                @Model.Board[i, j]
+                            </button>
+                        }
+                        else
+                        {
+                            <div class="occupied-cell @(isWinningCell ? "win-cell" : "")">@Model.Board[i, j]</div>
+                        }
+                    }
+                }
+            </div>
+        </form>
+
+        <div class="controls">
+            <form method="get" asp-action="ResetBoard">
+                <button type="submit">Reset Board</button>
+            </form>
+            <form method="get" asp-action="RestartGame">
+                <button type="submit">Restart Game</button>
+            </form>
+            <form method="get" asp-action="ToggleMode">
+                <button type="submit">@(@Model.IsAgainstAI ? "Switch to Multiplayer" : "Switch to AI Mode")</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

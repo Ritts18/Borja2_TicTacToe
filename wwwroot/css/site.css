@@ -1,0 +1,170 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #9e9e9e;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Heading */
+h1 {
+    color: #000000;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+h2 {
+    color: #000000;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+h3 {
+    color: #000000;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Game Container */
+.game-container {
+    max-width: 420px;
+    margin: 0 auto;
+    background-color: #269c29;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Scoreboard */
+.scoreboard {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+/* Game Board */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    grid-template-rows: repeat(3, 110px);
+    gap: 8px;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #1f1c1c;
+    border-radius: 10px;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+    /* Board Cells */
+    .game-board button,
+    .occupied-cell {
+        width: 110px;
+        height: 110px;
+        font-size: 38px;
+        font-weight: bold;
+        border: 3px solid #c30303;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+    }
+
+    /* Button Styles */
+    .game-board button {
+        background-color: #ffffff;
+        color: #222;
+    }
+
+        .game-board button:hover {
+            background-color: #f8f9fa;
+            transform: scale(1.05);
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+/* Occupied Cell */
+.occupied-cell {
+    background-color: #ffffff;
+    cursor: default;
+}
+
+/* Controls Section */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+    .controls button {
+        background-color: #000;
+        color: white;
+        border: none;
+        padding: 14px 22px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 6px;
+        font-weight: bold;
+        box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+        .controls button:hover {
+            background-color: #000;
+            transform: scale(1.1);
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .controls button:active {
+            transform: scale(0.98);
+        }
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .game-container {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(3, 90px);
+        grid-template-rows: repeat(3, 90px);
+        gap: 5px;
+    }
+
+        .game-board button,
+        .occupied-cell {
+            width: 90px;
+            height: 90px;
+            font-size: 32px;
+        }
+
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .controls button {
+            width: 100%;
+            font-size: 16px;
+            padding: 12px;
+        }
+}
+/* Winning Cell Glow Effect */
+.win-cell {
+    background-color: #0e0e0e !important; /* Green for winning */
+    color: white !important;
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px #28a745, 0 0 10px #28a745;
+    }
+
+    to {
+        box-shadow: 0 0 15px #28a745, 0 0 30px #28a745;
+    }
+}
